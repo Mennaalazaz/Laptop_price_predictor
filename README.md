@@ -1,6 +1,8 @@
 # Laptop Price Predictor
 
 This project aims to predict the price of laptops based on their various features. The process involves data cleaning, exploratory data analysis (EDA), feature engineering, model building, and evaluation using a dataset of laptop specifications and prices.
+![image](https://github.com/user-attachments/assets/063f5ad9-690e-44ef-bfd2-fc338cb63811)
+
 
 ## Table of Contents
 1.  [Project Goal](#project-goal)
