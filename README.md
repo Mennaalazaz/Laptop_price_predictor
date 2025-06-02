@@ -96,9 +96,3 @@ This indicates that the model can explain about 80% of the variance in the log-t
 
 You can typically install these using pip:
 `pip install pandas numpy matplotlib seaborn scikit-learn`
-*   **Deployment:** Create a simple web application (e.g., using Flask or Streamlit) to serve the model for interactive predictions.
-IGNORE_WHEN_COPYING_START
-content_copy
-download
-Use code with caution.
-IGNORE_WHEN_COPYING_END
