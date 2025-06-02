@@ -9,10 +9,7 @@ This project aims to predict the price of laptops based on their various feature
 4.  [Exploratory Data Analysis (EDA)](#exploratory-data-analysis-eda)
 5.  [Model Building](#model-building)
 6.  [Results](#results)
-7.  [How to Use the Model](#how-to-use-the-model)
-8.  [Dependencies](#dependencies)
-9.  [File Structure](#file-structure)
-10. [Future Work](#future-work)
+7.  [Dependencies](#dependencies)
 
 ## Project Goal
 The main objective of this project is to develop a regression model that can accurately predict the price of a laptop given its specifications.
@@ -89,53 +86,7 @@ The Decision Tree Regressor (with `max_depth=8`) was the last model trained and 
 
 This indicates that the model can explain about 80% of the variance in the log-transformed laptop prices. The MAE of 0.20 on the log scale means that, on average, the model's predictions (in log terms) are off by about 0.20.
 
-## How to Use the Model
-The trained pipeline (including the preprocessor and the Decision Tree model) and the processed DataFrame have been saved using `pickle`.
-*   `pipe.pkl`: The trained scikit-learn pipeline.
-*   `df.pkl`: The processed DataFrame (useful for understanding feature names and structure expected by the model).
-
-To make predictions on new data:
-1.  Load the pipeline:
-    ```python
-    import pickle
-    import numpy as np
-    import pandas as pd # For creating a DataFrame for new data
-
-    pipe = pickle.load(open('pipe.pkl', 'rb'))
-    # df_processed = pickle.load(open('df.pkl', 'rb')) # To see column order/names
-    ```
-2.  Prepare your new data. It should be a Pandas DataFrame with the same columns (and in the same order) as the `X_train` used to fit the pipeline. These columns are:
-    `['Company', 'TypeName', 'Ram', 'Weight', 'Touchscreen', 'IPS', 'ppi', 'cpu Brand', 'HDD', 'SSD', 'Gpu_Brand', 'OS']`
-    Ensure data types match (e.g., 'Ram' as int, 'Weight' as float, 'ppi' as float, 'HDD'/'SSD' as int).
-
-    ```python
-    # Example new data point
-    new_laptop_data = pd.DataFrame({
-        'Company': ['Apple'],
-        'TypeName': ['Ultrabook'],
-        'Ram': [8], # int
-        'Weight': [1.37], # float
-        'Touchscreen': [0], # int (0 or 1)
-        'IPS': [1], # int (0 or 1)
-        'ppi': [226.983005], # float
-        'cpu Brand': ['Intel Core i5'],
-        'HDD': [0], # int
-        'SSD': [128], # int
-        'Gpu_Brand': ['Intel'],
-        'OS': ['Mac']
-    })
-    ```
-3.  Make predictions:
-    ```python
-    log_price_prediction = pipe.predict(new_laptop_data)
-    price_prediction = np.exp(log_price_prediction) # Convert back from log scale
-
-    print(f"Predicted Log Price: {log_price_prediction[0]}")
-    print(f"Predicted Actual Price: {price_prediction[0]}")
-    ```
-
 ## Dependencies
-*   Python 3.x
 *   pandas
 *   numpy
 *   matplotlib
@@ -145,24 +96,6 @@ To make predictions on new data:
 
 You can typically install these using pip:
 `pip install pandas numpy matplotlib seaborn scikit-learn`
-
-## File Structure
-
-
-.
-├── laptop_price_predictor.ipynb # Jupyter notebook with the analysis and model training
-├── laptop_data.csv # Original dataset
-├── df.pkl # Pickled processed DataFrame
-├── pipe.pkl # Pickled trained model pipeline
-└── README.md # This file
-
-## Future Work
-*   **Hyperparameter Tuning:** Optimize the parameters of the chosen model (or other models) using techniques like GridSearchCV or RandomizedSearchCV.
-*   **Try More Advanced Models:** Explore models like Random Forest, Gradient Boosting (XGBoost, LightGBM, CatBoost), or Neural Networks.
-*   **Advanced Feature Engineering:**
-    *   Extract CPU clock speed or generation.
-    *   More detailed GPU categorization.
-*   **Cross-Validation:** Implement k-fold cross-validation for more robust model evaluation.
 *   **Deployment:** Create a simple web application (e.g., using Flask or Streamlit) to serve the model for interactive predictions.
 IGNORE_WHEN_COPYING_START
 content_copy
